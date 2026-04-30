@@ -1,5 +1,6 @@
 [flake8]
-ignore = E501 # Ignore les lignes trop longues (on est en 2026, on a des grands écrans !)
+# Ignore les lignes trop longues (on est en 2026, on a des grands écrans !)
+ignore = E501 
 exclude = 
     .git,
     __pycache__,
