@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Run Quality Check
+        run: python check_recipes.py
+
       - name: Run update script
         run: python update_readme.py
 
