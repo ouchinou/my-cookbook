@@ -4,16 +4,16 @@
 
 | Préparation | Cuisson | Portions |
 | :--- | :--- | :--- |
-| 20 min | 30 min | 4 pers. |
+| 20 min | 30 min | <input type="number" id="servings" value="4" min="1" style="width: 50px; font-weight: bold;"> pers. |
 
 ## 🛒 Ingrédients
-- [ ] 1 kg de pommes de terre (type Charlotte ou Amandine)
-- [ ] 1 Reblochon fermier (environ 450g)
-- [ ] 200 g de lardons fumés
-- [ ] 2 oignons jaunes
-- [ ] 2 cuillères à soupe de crème fraîche épaisse
-- [ ] 1 gousse d'ail (pour le plat)
-- [ ] 10 cl de vin blanc sec (type Apremont ou Abymes)
+- [ ] <span class="qty" data-base="1">1</span> kg de pommes de terre (type Charlotte ou Amandine)
+- [ ] <span class="qty" data-base="1">1</span> Reblochon fermier (environ <span class="qty" data-base="450">450</span> g)
+- [ ] <span class="qty" data-base="200">200</span> g de lardons fumés
+- [ ] <span class="qty" data-base="2">2</span> oignons jaunes
+- [ ] <span class="qty" data-base="2">2</span> cuillères à soupe de crème fraîche épaisse
+- [ ] <span class="qty" data-base="1">1</span> gousse d'ail (pour le plat)
+- [ ] <span class="qty" data-base="10">10</span> cl de vin blanc sec (type Apremont ou Abymes)
 - [ ] Poivre du moulin (sel inutile à cause des lardons et du fromage)
 
 ## 🥣 Instructions
@@ -36,3 +36,18 @@
 
 ---
 [⬅ Retour à l'index](../README.md)
+
+<script>
+  const servingInput = document.getElementById('servings');
+  const baseServings = 4;
+
+  servingInput.addEventListener('input', () => {
+    const ratio = servingInput.value / baseServings;
+    document.querySelectorAll('.qty').forEach(span => {
+      const baseValue = parseFloat(span.getAttribute('data-base'));
+      // Calcul avec arrondi à 1 décimale
+      let newValue = Math.round((baseValue * ratio) * 10) / 10;
+      span.textContent = newValue;
+    });
+  });
+</script>
