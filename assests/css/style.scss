@@ -1,0 +1,35 @@
+---
+---
+@import "{{ site.theme }}";
+
+// Personnalisation des couleurs pour un look "Ardoise de Restaurant"
+body {
+  background-color: #2c2c2c; // Fond ardoise sombre
+}
+
+section {
+  color: #eee; // Texte blanc cassé plus doux pour les yeux
+}
+
+// Style pour les liens (Couleur Terracotta/Orange)
+a {
+  color: #ff7043;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+// Amélioration visuelle de notre sélecteur de portions
+#servings {
+  background: #444;
+  color: #fff;
+  border: 1px solid #ff7043;
+  border-radius: 4px;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+// Mise en avant des ingrédients
+.qty {
+  font-weight: bold;
+  color: #ffccbc; // Couleur chair/saumon léger
+}
