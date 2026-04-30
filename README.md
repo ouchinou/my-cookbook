@@ -1,3 +1,8 @@
-# my-cookbook
+# 📖 Mon Carnet de Recettes
 
-[Tartiflette de Pierrot](plats/tartiflette-savoyarde.md)
+Bienvenue dans mon livre de cuisine automatisé !
+
+## Plats
+* [Galette sarrasin](./plats/galette-sarrasin.md)
+* [Tartiflette savoyarde](./plats/tartiflette-savoyarde.md)
+
