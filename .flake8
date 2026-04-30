@@ -1,0 +1,8 @@
+[flake8]
+ignore = E501 # Ignore les lignes trop longues (on est en 2026, on a des grands écrans !)
+exclude = 
+    .git,
+    __pycache__,
+    assets,
+    .github
+max-complexity = 10
