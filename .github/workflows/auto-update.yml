@@ -1,0 +1,30 @@
+name: Update README Index
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.md'  # Ne se lance que si vous modifiez/ajoutez un fichier Markdown
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run update script
+        run: python update_readme.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update README index" && git push)
