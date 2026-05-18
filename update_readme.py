@@ -9,6 +9,9 @@ def generate_readme():
         "plats": "🥘 Plats Résistants",
         "sauces": "🍯 Sauces & Marinades",
         "desserts": "🍰 Desserts Gourmands",
+        "divers": "🍽️ Divers & Accompagnements",
+        "boulangerie": "🥖 Pâtes & Boulangerie",
+        "BBQ": "🔥 Recettes pour le BBQ",
     }
 
     readme_content = "# 📖 Mon Carnet de Recettes\n\n"
@@ -35,7 +38,7 @@ def generate_readme():
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
 
-    print("✅ README.md mis à jour avec la catégorie Sauces !")
+    print("✅ README.md mis à jour avec toutes les catégories !")
 
 
 if __name__ == "__main__":

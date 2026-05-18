@@ -11,16 +11,20 @@ def check_recipes():
     for root, dirs, files in os.walk("."):
         # On ignore les dossiers techniques et les assets
         dirs[:] = [
-            d for d in dirs if not d.startswith((".", "assets", "venv", "__pycache__"))
+            d for d in dirs if not d.startswith((".", "assests", "venv", "__pycache__"))
         ]
 
         for file in files:
-            # On ne check que les fichiers Markdown qui ne sont pas le README principal
-            if file.endswith(".md") and file.lower() != "readme.md":
+            # On ne check que les fichiers Markdown qui ne sont pas le README principal ni le template
+            if file.endswith(".md") and file.lower() not in (
+                "readme.md",
+                "template.md",
+            ):
                 path = os.path.join(root, file)
 
-                # 1. Vérification du nom (Ajout de l'underscore _ dans la regex)
-                if not re.match(r"^[a-z0-9\-\._]+$", file):
+                # 1. Vérification du nom du fichier ET des dossiers parents
+                relative_path = os.path.relpath(path, ".")
+                if not re.match(r"^[a-z0-9\-\._/\\]+$", relative_path):
                     errors.append(
                         f"NOM : '{path}' contient des caractères invalides (accents, majuscules, espaces)."
                     )
@@ -38,12 +42,14 @@ def check_recipes():
                     errors.append(f"LECTURE : Impossible de lire '{path}' ({e})")
 
     if errors:
-        print(f"❌ {len(errors)} erreur(s) de validation trouvée(s) :")
+        print(f"❌ {len(errors)} erreur(s) de validation trouvée(s) :", flush=True)
         for error in errors:
-            print(f"  - {error}")
+            print(f"  - {error}", flush=True)
+        sys.stdout.flush()
         sys.exit(1)
     else:
-        print("✅ Toutes les recettes sont conformes !")
+        print("✅ Toutes les recettes sont conformes !", flush=True)
+        sys.stdout.flush()
         sys.exit(0)
 
 

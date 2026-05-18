@@ -4,17 +4,14 @@ Bienvenue dans mon livre de cuisine automatisé !
 
 ## 🍸 Apéros & Entrées
 - [Cade socca](aperos/cade-socca.md)
+- [Guacamole maison](aperos/guacamole-maison.md)
+- [Houmous cremeux](aperos/houmous-cremeux.md)
+- [Sauce onctueuse herbes](aperos/sauce-onctueuse-herbes.md)
+- [Tapenade noire](aperos/tapenade-noire.md)
 
-## 🥘 Plats Résistants
-- [Galette sarrasin](plats/galette-sarrasin.md)
-- [Rougail saucisses](plats/rougail-saucisses.md)
-- [Sushis et makis](plats/sushis-et-makis.md)
-- [Tartiflette savoyarde](plats/tartiflette-savoyarde.md)
-
-## 🍯 Sauces & Marinades
-- [Bbq dry rub](sauces/bbq-dry-rub.md)
-- [Guacamole maison](sauces/guacamole-maison.md)
-- [Houmous cremeux](sauces/houmous-cremeux.md)
-- [Sauce onctueuse herbes](sauces/sauce-onctueuse-herbes.md)
-- [Tapenade noire](sauces/tapenade-noire.md)
+## 🥖 Pâtes & Boulangerie
+- [Burger_brioche](boulangerie/burger_brioche.md)
+- [Flammekuche](boulangerie/flammekuche.md)
+- [Pain](boulangerie/pain.md)
+- [Pizza](boulangerie/pizza.md)
 

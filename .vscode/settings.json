@@ -1,5 +1,7 @@
 {
     "flake8.args": [
         ".flake8"
-    ]
+    ],
+    "explorer.autoReveal": false,
+    "python.defaultInterpreterPath": "C:\\Users\\pbrocart\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
 }
