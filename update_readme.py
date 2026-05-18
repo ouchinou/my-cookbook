@@ -11,7 +11,7 @@ def generate_readme():
         "desserts": "🍰 Desserts Gourmands",
         "divers": "🍽️ Divers & Accompagnements",
         "boulangerie": "🥖 Pâtes & Boulangerie",
-        "BBQ": "🔥 Recettes pour le BBQ",
+        "bbq": "🔥 Recettes pour le BBQ",
     }
 
     readme_content = "# 📖 Mon Carnet de Recettes\n\n"
@@ -20,17 +20,22 @@ def generate_readme():
     # Parcours des catégories définies
     for folder, title in categories.items():
         if os.path.exists(folder):
-            # Récupération et tri des fichiers .md
-            files = [f for f in os.listdir(folder) if f.endswith(".md")]
-
-            if files:
-                readme_content += f"## {title}\n"
+            # Récupération récursive de tous les fichiers .md
+            recipe_files = []
+            for root, dirs, files in os.walk(folder):
                 for file in sorted(files):
+                    if file.endswith(".md"):
+                        path = os.path.join(root, file).replace("\\", "/")
+                        recipe_files.append(path)
+
+            if recipe_files:
+                readme_content += f"## {title}\n"
+                for path in sorted(recipe_files):
+                    file = os.path.basename(path)
                     # Transformation du nom de fichier en titre lisible
                     display_name = (
-                        file.replace(".md", "").replace("-", " ").capitalize()
+                        file.replace(".md", "").replace("-", " ").replace("_", " ").capitalize()
                     )
-                    path = f"{folder}/{file}"
                     readme_content += f"- [{display_name}]({path})\n"
                 readme_content += "\n"
 
