@@ -1,22 +1,66 @@
 import os
 
 # ---------------------------------------------------------------------------
-# Configuration des catégories  (dossier → titre affiché)
+# Configuration des catégories (dossier racine → titre affiché)
 # ---------------------------------------------------------------------------
 CATEGORIES = {
-    "aperos": "🍸 Apéros & Entrées",
-    "entrees": "🥗 Entrées",
-    "plats": "🥘 Plats",
+    "aperos":            "🍸 Apéros & Entrées",
+    "entrees":           "🥗 Entrées",
+    "plats":             "🥘 Plats",
     "boulangerie_pates": "🥖 Pâtes & Boulangerie",
-    "sauces": "🍯 Sauces, Marinades & Rubs",
-    "bbq": "🔥 BBQ",
-    "desserts": "🍰 Desserts",
+    "sauces":            "🍯 Sauces, Marinades & Rubs",
+    "bbq":               "🔥 BBQ",
+    "desserts":          "🍰 Desserts",
+}
+
+# Titres affichés (avec emoji) pour tous les sous-dossiers connus
+SUBFOLDER_TITLES = {
+    # Plats — regroupements géographiques
+    "asiatique":   "🌏 Cuisine Asiatique",
+    "france":      "🇫🇷 Cuisine Française",
+    "mexique":     "🌮 Mexique",
+    "tex-mex":     "🌯 Tex-Mex",
+    "inde":        "🍛 Inde",
+    "autres":      "🍽️ Autres",
+    # Régions françaises
+    "alsace":      "🥨 Alsace",
+    "bourgogne":   "🍷 Bourgogne",
+    "bretagne":    "🥞 Bretagne",
+    "corse":       "🏝️ Corse",
+    "lyon":        "🍽️ Lyon & Rhône-Alpes",
+    "normandie":   "🧈 Normandie",
+    "nord":        "🧅 Nord & Hauts-de-France",
+    "pays-basque": "🌶️ Pays Basque",
+    "perigord":    "🦆 Périgord & Dordogne",
+    "provence":    "🌿 Provence & Côte d'Azur",
+    "savoie":      "🏔️ Savoie & Alpes",
+    # Cuisines asiatiques
+    "chine":       "🥟 Chine",
+    "coree":       "🥢 Corée du Sud",
+    "indonesie":   "🍜 Indonésie",
+    "japon":       "🍣 Japon",
+    "thai":        "🌶️ Thaïlande",
+    "vietnam":     "🫕 Vietnam",
+    # BBQ
+    "grill":       "🔥 Grill",
+    "roast":       "🍗 Rôtisserie",
+    "smoke":       "💨 Fumage",
+    # Sauces
+    "marinades":   "🫙 Marinades",
+    "rubs":        "🧂 Rubs & Épices",
 }
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+def get_folder_title(folder_name):
+    """Retourne le titre d'un sous-dossier (avec emoji si connu)."""
+    return SUBFOLDER_TITLES.get(
+        folder_name,
+        folder_name.replace("-", " ").replace("_", " ").title(),
+    )
 
 
 def get_recipe_title(filepath):
@@ -38,71 +82,84 @@ def get_recipe_title(filepath):
     )
 
 
-def collect_recipes(folder):
-    """Retourne un dict {sous-dossier_relatif: [(filepath, titre)]} trié."""
-    grouped = {}
-    for root, dirs, files in os.walk(folder):
-        dirs[:] = sorted(d for d in dirs if not d.startswith((".", "__")))
-        md_files = sorted(
-            f for f in files if f.endswith(".md") and f.lower() != "readme.md"
-        )
-        if md_files:
-            rel = os.path.relpath(root, folder)
-            key = "." if rel == "." else rel
-            grouped.setdefault(key, [])
-            for f in md_files:
-                fp = os.path.join(root, f)
-                grouped[key].append((fp, get_recipe_title(fp)))
-    return grouped
-
-
 def count_recipes(folder):
     """Compte le nombre total de recettes (.md hors README) dans un dossier."""
     total = 0
     for root, dirs, files in os.walk(folder):
         dirs[:] = [d for d in dirs if not d.startswith((".", "__"))]
-        total += sum(1 for f in files if f.endswith(".md") and f.lower() != "readme.md")
+        total += sum(
+            1 for f in files if f.endswith(".md") and f.lower() != "readme.md"
+        )
     return total
 
 
-def subfolder_label(path):
-    """Transforme un chemin de sous-dossier en libellé lisible."""
-    return (
-        path.replace("\\", "/")
-        .replace("/", " › ")
-        .replace("-", " ")
-        .replace("_", " ")
-        .title()
-    )
-
-
 # ---------------------------------------------------------------------------
-# Génération
+# Génération récursive des README
 # ---------------------------------------------------------------------------
 
+def generate_folder_readme(folder, title, depth=0):
+    """
+    Génère le README.md d'un dossier, puis appelle récursivement ses sous-dossiers.
 
-def generate_category_readme(folder, title):
-    """Génère le README.md d'index d'une catégorie."""
-    grouped = collect_recipes(folder)
-    if not grouped:
+    - Dossier avec sous-dossiers → tableau de navigation (catégorie + nb recettes)
+    - Dossier feuille            → liste de recettes (ou message "aucune recette")
+    """
+    try:
+        entries = sorted(os.listdir(folder))
+    except FileNotFoundError:
         return
 
+    subfolders = [
+        d for d in entries
+        if os.path.isdir(os.path.join(folder, d)) and not d.startswith((".", "__"))
+    ]
+    direct_recipes = [
+        (os.path.join(folder, f), get_recipe_title(os.path.join(folder, f)))
+        for f in entries
+        if (
+            os.path.isfile(os.path.join(folder, f))
+            and f.endswith(".md")
+            and f.lower() != "readme.md"
+        )
+    ]
+
+    back_label = "Retour à l'accueil" if depth == 0 else "Retour"
     lines = [f"# {title}\n"]
 
-    for subfolder in sorted(grouped.keys()):
-        recipes = grouped[subfolder]
-        if subfolder != ".":
-            lines.append(f"\n## {subfolder_label(subfolder)}\n")
-        for filepath, recipe_title in recipes:
-            rel_path = os.path.relpath(filepath, folder).replace("\\", "/")
-            lines.append(f"- [{recipe_title}]({rel_path})")
+    if subfolders:
+        # ── Dossier intermédiaire : tableau des sous-catégories ───────────
+        lines += ["| Catégorie | Recettes |", "| :--- | :---: |"]
+        for sub in subfolders:
+            sub_title = get_folder_title(sub)
+            n = count_recipes(os.path.join(folder, sub))
+            lines.append(f"| [{sub_title}]({sub}/) | {n} |")
 
-    lines += ["", "---", "[⬅ Retour à l'accueil](../)", ""]
+        if direct_recipes:  # recettes rangées directement (cas mixte rare)
+            lines += ["\n## Recettes générales\n"]
+            for fp, rt in direct_recipes:
+                lines.append(f"- [{rt}]({os.path.basename(fp)})")
+    else:
+        # ── Dossier feuille : liste de recettes ───────────────────────────
+        if direct_recipes:
+            for fp, rt in direct_recipes:
+                lines.append(f"- [{rt}]({os.path.basename(fp)})")
+        else:
+            lines.append("*Aucune recette pour l'instant.*")
+
+    lines += ["", "---", f"[⬅ {back_label}](../)", ""]
 
     readme_path = os.path.join(folder, "README.md")
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
     print(f"  📄 {readme_path}  ({count_recipes(folder)} recettes)")
+
+    # ── Récursion ─────────────────────────────────────────────────────────
+    for sub in subfolders:
+        generate_folder_readme(
+            os.path.join(folder, sub),
+            get_folder_title(sub),
+            depth + 1,
+        )
 
 
 def generate_main_readme():
@@ -113,13 +170,11 @@ def generate_main_readme():
         "| Catégorie | Recettes |",
         "| :--- | :---: |",
     ]
-
     for folder, title in CATEGORIES.items():
         if os.path.exists(folder):
-            count = count_recipes(folder)
-            if count > 0:
-                lines.append(f"| [{title}]({folder}/) | {count} |")
-
+            n = count_recipes(folder)
+            if n > 0:
+                lines.append(f"| [{title}]({folder}/) | {n} |")
     lines.append("")
     with open("README.md", "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
@@ -131,7 +186,7 @@ def generate_all():
     generate_main_readme()
     for folder, title in CATEGORIES.items():
         if os.path.exists(folder):
-            generate_category_readme(folder, title)
+            generate_folder_readme(folder, title, depth=0)
     print("✅ Tous les index sont à jour !")
 
 

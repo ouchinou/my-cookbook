@@ -1,26 +1,13 @@
 # 🥘 Plats
 
-
-## Asiatique
-
-- [🍣 Sushis et Makis Maison](asiatique/sushis-et-makis.md)
-
-## Autres
-
-- [🇷🇪 Rougail Saucisses (Tradition Réunionnaise)](autres/rougail-saucisses.md)
-
-## Bretagne
-
-- [� La Galette Complète](bretagne/galette-complete.md)
-
-## Nord
-
-- [La Véritable Flamiche au Maroilles](nord/flamiche-maroilles.md)
-
-## Savoie
-
-- [La Véritable Fondue Savoyarde aux Trois Fromages](savoie/fondue-savoyarde.md)
-- [🧀 Tartiflette Savoyarde Traditionnelle](savoie/tartiflette-savoyarde.md)
+| Catégorie | Recettes |
+| :--- | :---: |
+| [🌏 Cuisine Asiatique](asiatique/) | 1 |
+| [🍽️ Autres](autres/) | 1 |
+| [🇫🇷 Cuisine Française](france/) | 4 |
+| [🍛 Inde](inde/) | 0 |
+| [🌮 Mexique](mexique/) | 0 |
+| [🌯 Tex-Mex](tex-mex/) | 0 |
 
 ---
 [⬅ Retour à l'accueil](../)
