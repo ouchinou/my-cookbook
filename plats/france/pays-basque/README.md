@@ -1,6 +1,6 @@
 # 🌶️ Pays Basque
 
-*Aucune recette pour l'instant.*
+- [🥩 Boles de Picolat (Boulettes au Piment d'Espelette)](boulet-de-picolat.md)
 
 ---
 [⬅ Retour](../)

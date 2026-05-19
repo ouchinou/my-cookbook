@@ -26,7 +26,7 @@
 ## 💡 Notes & Astuces
 * **Température du lait :** Viser ~35°C. Trop chaud, il tue la levure.
 * **Congélation :** La pâte peut se congeler après la première pousse, bien filmée.
-* **Utilisation :** Idéale pour la [Flamiche au Maroilles](../plats/nord/flamiche-maroilles.md).
+* **Utilisation :** Idéale pour la [Flamiche au Maroilles](../plats/france/nord/flamiche-maroilles.md).
 
 ---
 [⬅ Retour à la boulangerie](./README.md)

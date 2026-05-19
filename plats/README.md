@@ -2,12 +2,12 @@
 
 | Catégorie | Recettes |
 | :--- | :---: |
-| [🌏 Cuisine Asiatique](asiatique/) | 1 |
-| [� Outre-Mer](autres/) | 1 |
-| [🇫🇷 Cuisine Française Métropolitaine](france/) | 4 |
+| [🌏 Cuisine Asiatique](asiatique/) | 6 |
+| [� Outre-Mer](autres/) | 2 |
+| [🇫🇷 Cuisine Française Métropolitaine](france/) | 6 |
 | [🍛 Inde](inde/) | 0 |
-| [🌮 Mexique](mexique/) | 0 |
-| [🌯 Tex-Mex](tex-mex/) | 0 |
+| [🌮 Mexique](mexique/) | 1 |
+| [🌯 Tex-Mex](tex-mex/) | 3 |
 
 ---
 [⬅ Retour à l'accueil](../)

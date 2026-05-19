@@ -7,9 +7,9 @@
 | [🥞 Bretagne](bretagne/) | 1 |
 | [🏝️ Corse](corse/) | 0 |
 | [🍽️ Lyon & Rhône-Alpes](lyon/) | 0 |
-| [🧅 Nord & Hauts-de-France](nord/) | 1 |
+| [🧅 Nord & Hauts-de-France](nord/) | 2 |
 | [🧈 Normandie](normandie/) | 0 |
-| [🌶️ Pays Basque](pays-basque/) | 0 |
+| [🌶️ Pays Basque](pays-basque/) | 1 |
 | [🦆 Périgord & Dordogne](perigord/) | 0 |
 | [🌿 Provence & Côte d'Azur](provence/) | 0 |
 | [🏔️ Savoie & Alpes](savoie/) | 2 |

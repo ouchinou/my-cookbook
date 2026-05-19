@@ -1,6 +1,6 @@
 # 🥟 Chine
 
-*Aucune recette pour l'instant.*
+- [🥟 Dim Sum — Siu Mai (Raviolis Vapeur Ouverts)](dim-sum.md)
 
 ---
 [⬅ Retour](../)

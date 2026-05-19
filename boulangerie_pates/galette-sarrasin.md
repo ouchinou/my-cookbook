@@ -4,13 +4,13 @@
 
 | Préparation | Repos | Cuisson | Portions |
 | :--- | :--- | :--- | :--- |
-| 10 min | 2 h | 2 min / galette | 6-8 galettes |
+| 10 min | 2 h | 2 min / galette | <input type="number" id="servings" value="8" min="1" style="width: 50px; font-weight: bold;"> galettes |
 
 ## 🛒 Ingrédients
-- [ ] 330 g de farine de blé noir (sarrasin)
-- [ ] 75 cl d'eau froide
-- [ ] 10 g de gros sel
-- [ ] 1 œuf (facultatif, pour la tenue et la couleur)
+- [ ] <span class="qty" data-base="330">330</span> g de farine de blé noir (sarrasin)
+- [ ] <span class="qty" data-base="75">75</span> cl d'eau froide
+- [ ] <span class="qty" data-base="10">10</span> g de gros sel
+- [ ] <span class="qty" data-base="1">1</span> œuf (facultatif, pour la tenue et la couleur)
 - [ ] Beurre demi-sel (pour la cuisson)
 
 ## 🥣 Instructions
@@ -33,3 +33,17 @@
 
 ---
 [⬅ Retour à la boulangerie](./README.md)
+
+<script>
+  const servingInput = document.getElementById('servings');
+  const baseServings = 8;
+
+  servingInput.addEventListener('input', () => {
+    const ratio = servingInput.value / baseServings;
+    document.querySelectorAll('.qty').forEach(span => {
+      const baseValue = parseFloat(span.getAttribute('data-base'));
+      let newValue = Math.round((baseValue * ratio) * 10) / 10;
+      span.textContent = newValue;
+    });
+  });
+</script>

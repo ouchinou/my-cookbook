@@ -1,6 +1,6 @@
 # 🌮 Mexique
 
-*Aucune recette pour l'instant.*
+- [🥟 Empanadas (Chaussons Farcis)](empanadas.md)
 
 ---
 [⬅ Retour](../)

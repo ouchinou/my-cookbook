@@ -4,7 +4,7 @@
 
 | Préparation | Repos | Cuisson | Portions |
 | :--- | :--- | :--- | :--- |
-| 45 min | 50 min | 20 min | ~8-9 rouleaux |
+| 45 min | 50 min | 20 min | <input type="number" id="servings" value="8" min="1" style="width: 50px; font-weight: bold;"> rouleaux |
 
 ## 🛠 Matériel nécessaire
 - [ ] Cuiseur à riz (Rice cooker)
@@ -14,20 +14,20 @@
 ## 🛒 Ingrédients
 
 ### Le Riz (Base)
-- [ ] 500 g de riz à sushi/maki
-- [ ] 625 ml d'eau
-- [ ] 105 ml de vinaigre de riz
-- [ ] 55 g de sucre
-- [ ] 1/2 cuillère à café de sel
+- [ ] <span class="qty" data-base="500">500</span> g de riz à sushi/maki
+- [ ] <span class="qty" data-base="625">625</span> ml d'eau
+- [ ] <span class="qty" data-base="105">105</span> ml de vinaigre de riz
+- [ ] <span class="qty" data-base="55">55</span> g de sucre
+- [ ] <span class="qty" data-base="0.5">0.5</span> cuillère à café de sel
 
 ### Garnitures (Makis)
-- [ ] 8 à 9 feuilles d'algues Nori
-- [ ] 300 g de saumon frais (qualité sashimi)
-- [ ] 250 g de crevettes (ouvertes et nettoyées)
-- [ ] 1 avocat
-- [ ] 1 concombre
-- [ ] 1/2 carotte
-- [ ] 1 pot de fromage frais (type Philadelphia)
+- [ ] <span class="qty" data-base="8">8</span> à 9 feuilles d'algues Nori
+- [ ] <span class="qty" data-base="300">300</span> g de saumon frais (qualité sashimi)
+- [ ] <span class="qty" data-base="250">250</span> g de crevettes (ouvertes et nettoyées)
+- [ ] <span class="qty" data-base="1">1</span> avocat
+- [ ] <span class="qty" data-base="1">1</span> concombre
+- [ ] <span class="qty" data-base="0.5">0.5</span> carotte
+- [ ] <span class="qty" data-base="1">1</span> pot de fromage frais (type Philadelphia)
 
 ### Accompagnements
 - [ ] Graines de sésame
@@ -62,4 +62,18 @@
 * **Tutos :** N'hésitez pas à regarder une vidéo pour la technique de découpe et de roulage des makis.
 
 ---
-[⬅ Retour à l'accueil](../)
+[⬅ Retour à l'index](../README.md)
+
+<script>
+  const servingInput = document.getElementById('servings');
+  const baseServings = 8;
+
+  servingInput.addEventListener('input', () => {
+    const ratio = servingInput.value / baseServings;
+    document.querySelectorAll('.qty').forEach(span => {
+      const baseValue = parseFloat(span.getAttribute('data-base'));
+      let newValue = Math.round((baseValue * ratio) * 10) / 10;
+      span.textContent = newValue;
+    });
+  });
+</script>
