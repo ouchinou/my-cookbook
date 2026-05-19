@@ -18,15 +18,15 @@ Bienvenue dans mon livre de cuisine automatisé !
 - [Tartiflette savoyarde](plats/savoie/tartiflette-savoyarde.md)
 
 ## 🍯 Sauces & Marinades
-- [Gemini code 1779095368057](sauces/marinades/gemini-code-1779095368057.md)
-- [Gemini code 1779095372377](sauces/marinades/gemini-code-1779095372377.md)
-- [Gemini code 1779095375785](sauces/marinades/gemini-code-1779095375785.md)
-- [Gemini code 1779095378050](sauces/marinades/gemini-code-1779095378050.md)
-- [Gemini code 1779095381114](sauces/marinades/gemini-code-1779095381114.md)
-- [Bbq dry rub](sauces/rubs/bbq-dry-rub.md)
-- [Gemini code 1779095476033](sauces/rubs/gemini-code-1779095476033.md)
-- [Gemini code 1779095481458](sauces/rubs/gemini-code-1779095481458.md)
-- [Gemini code 1779095484395](sauces/rubs/gemini-code-1779095484395.md)
+- [Bbq light smoky sweet](sauces/marinades/bbq-light-smoky-sweet.md)
+- [Citron herbes](sauces/marinades/citron-herbes.md)
+- [Citron vert coriandre](sauces/marinades/citron-vert-coriandre.md)
+- [Indienne curry](sauces/marinades/indienne-curry.md)
+- [Teriyaki allegee](sauces/marinades/teriyaki-allegee.md)
+- [Rub citron](sauces/rubs/rub-citron.md)
+- [Rub magic dust](sauces/rubs/rub-magic-dust.md)
+- [Rub spg](sauces/rubs/rub-spg.md)
+- [Rub spicy](sauces/rubs/rub-spicy.md)
 
 ## 🥖 Pâtes & Boulangerie
 - [Burger brioche](boulangerie/burger_brioche.md)
