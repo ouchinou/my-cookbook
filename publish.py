@@ -6,6 +6,7 @@ Usage :
   python publish.py --fix     # corrige les noms invalides avant de publier
   python publish.py --dry-run # affiche le message de commit sans rien pousser
 """
+
 import os
 import subprocess
 import sys
@@ -15,21 +16,27 @@ import tempfile
 # Dossiers de recettes reconnus
 # ---------------------------------------------------------------------------
 RECIPE_FOLDERS = {
-    "aperos", "entrees", "plats", "boulangerie_pates",
-    "sauces", "bbq", "desserts",
+    "aperos",
+    "entrees",
+    "plats",
+    "boulangerie_pates",
+    "sauces",
+    "bbq",
+    "desserts",
 }
 
-MAX_TITLES_IN_MSG = 5   # Au-delà, on résume par "et N autres"
+MAX_TITLES_IN_MSG = 5  # Au-delà, on résume par "et N autres"
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def run(cmd, capture=False, check=True):
     """Exécute une commande shell et retourne le résultat."""
     env = os.environ.copy()
-    env["PYTHONIOENCODING"] = "utf-8"   # force UTF-8 dans les sous-processus Python
+    env["PYTHONIOENCODING"] = "utf-8"  # force UTF-8 dans les sous-processus Python
     result = subprocess.run(
         cmd, shell=True, capture_output=capture, text=True, encoding="utf-8", env=env
     )
@@ -82,6 +89,7 @@ def format_titles(titles):
 # Construction du message de commit
 # ---------------------------------------------------------------------------
 
+
 def build_commit_message():
     """Analyse git status --porcelain et génère un message de commit."""
     result = run("git status --porcelain", capture=True, check=False)
@@ -92,7 +100,7 @@ def build_commit_message():
         if len(line) < 4:
             continue
 
-        xy = line[:2]           # Ex: "??", " M", "A ", "R ", "D "
+        xy = line[:2]  # Ex: "??", " M", "A ", "R ", "D "
         filepath = line[3:].strip()
 
         # Les renames sont au format "old -> new"
@@ -102,8 +110,12 @@ def build_commit_message():
         if not is_recipe_file(filepath):
             continue
 
-        title = get_recipe_title(filepath) if os.path.exists(filepath) else (
-            os.path.basename(filepath).replace(".md", "").replace("-", " ").title()
+        title = (
+            get_recipe_title(filepath)
+            if os.path.exists(filepath)
+            else (
+                os.path.basename(filepath).replace(".md", "").replace("-", " ").title()
+            )
         )
 
         if "?" in xy or "A" in xy:
@@ -116,13 +128,19 @@ def build_commit_message():
     parts = []
     if added:
         n = len(added)
-        parts.append(f"ajout {n} recette{'s' if n > 1 else ''} : {format_titles(added)}")
+        parts.append(
+            f"ajout {n} recette{'s' if n > 1 else ''} : {format_titles(added)}"
+        )
     if modified:
         n = len(modified)
-        parts.append(f"màj {n} recette{'s' if n > 1 else ''} : {format_titles(modified)}")
+        parts.append(
+            f"màj {n} recette{'s' if n > 1 else ''} : {format_titles(modified)}"
+        )
     if deleted:
         n = len(deleted)
-        parts.append(f"suppression {n} recette{'s' if n > 1 else ''} : {format_titles(deleted)}")
+        parts.append(
+            f"suppression {n} recette{'s' if n > 1 else ''} : {format_titles(deleted)}"
+        )
 
     if not parts:
         return "chore: mise à jour des index et scripts"
@@ -135,23 +153,30 @@ def build_commit_message():
 # Pipeline principal
 # ---------------------------------------------------------------------------
 
+
 def main():
     auto_fix = "--fix" in sys.argv
-    dry_run  = "--dry-run" in sys.argv
+    dry_run = "--dry-run" in sys.argv
 
     print("=" * 58)
     print("  🚀  Publication du carnet de recettes")
     print("=" * 58)
 
     # ── Étape 1 : vérification (+ correction optionnelle) ──────────────────
-    check_cmd = "python check_recipes.py --fix" if auto_fix else "python check_recipes.py"
-    print(f"\n📋 Étape 1/4 — Vérification des recettes{' (--fix)' if auto_fix else ''}...")
+    check_cmd = (
+        "python check_recipes.py --fix" if auto_fix else "python check_recipes.py"
+    )
+    print(
+        f"\n📋 Étape 1/4 — Vérification des recettes{' (--fix)' if auto_fix else ''}..."
+    )
     result = run(check_cmd, capture=True, check=False)
     print(result.stdout.rstrip())
     if result.returncode != 0:
         sys.stderr.write(result.stderr)
         print("\n❌ Publication annulée : des recettes sont invalides.")
-        print("   Conseil : relancez avec --fix pour corriger les noms automatiquement.")
+        print(
+            "   Conseil : relancez avec --fix pour corriger les noms automatiquement."
+        )
         sys.exit(1)
 
     # ── Étape 2 : vérifier s'il y a quelque chose à publier ────────────────
