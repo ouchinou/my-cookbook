@@ -17,11 +17,11 @@ CATEGORIES = {
 SUBFOLDER_TITLES = {
     # Plats — regroupements géographiques
     "asiatique": "🌏 Cuisine Asiatique",
-    "france": "🇫🇷 Cuisine Française",
+    "france": "🇫🇷 Cuisine Française Métropolitaine",
     "mexique": "🌮 Mexique",
     "tex-mex": "🌯 Tex-Mex",
     "inde": "🍛 Inde",
-    "autres": "🍽️ Autres",
+    "autres": "� Outre-Mer",
     # Régions françaises
     "alsace": "🥨 Alsace",
     "bourgogne": "🍷 Bourgogne",

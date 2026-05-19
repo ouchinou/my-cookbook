@@ -1,4 +1,4 @@
-# 🇫🇷 Cuisine Française
+# 🇫🇷 Cuisine Française Métropolitaine
 
 | Catégorie | Recettes |
 | :--- | :---: |
