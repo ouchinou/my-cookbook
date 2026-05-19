@@ -4,56 +4,78 @@ import os
 # Configuration des catégories (dossier racine → titre affiché)
 # ---------------------------------------------------------------------------
 CATEGORIES = {
-    "aperos":            "🍸 Apéros & Entrées",
-    "entrees":           "🥗 Entrées",
-    "plats":             "🥘 Plats",
+    "aperos": "🍸 Apéros & Entrées",
+    "entrees": "🥗 Entrées",
+    "plats": "🥘 Plats",
     "boulangerie_pates": "🥖 Pâtes & Boulangerie",
-    "sauces":            "🍯 Sauces, Marinades & Rubs",
-    "bbq":               "🔥 BBQ",
-    "desserts":          "🍰 Desserts",
+    "sauces": "🍯 Sauces, Marinades & Rubs",
+    "bbq": "🔥 BBQ",
+    "desserts": "🍰 Desserts",
 }
 
 # Titres affichés (avec emoji) pour tous les sous-dossiers connus
 SUBFOLDER_TITLES = {
     # Plats — regroupements géographiques
-    "asiatique":   "🌏 Cuisine Asiatique",
-    "france":      "🇫🇷 Cuisine Française",
-    "mexique":     "🌮 Mexique",
-    "tex-mex":     "🌯 Tex-Mex",
-    "inde":        "🍛 Inde",
-    "autres":      "🍽️ Autres",
+    "asiatique": "🌏 Cuisine Asiatique",
+    "france": "🇫🇷 Cuisine Française",
+    "mexique": "🌮 Mexique",
+    "tex-mex": "🌯 Tex-Mex",
+    "inde": "🍛 Inde",
+    "autres": "🍽️ Autres",
     # Régions françaises
-    "alsace":      "🥨 Alsace",
-    "bourgogne":   "🍷 Bourgogne",
-    "bretagne":    "🥞 Bretagne",
-    "corse":       "🏝️ Corse",
-    "lyon":        "🍽️ Lyon & Rhône-Alpes",
-    "normandie":   "🧈 Normandie",
-    "nord":        "🧅 Nord & Hauts-de-France",
+    "alsace": "🥨 Alsace",
+    "bourgogne": "🍷 Bourgogne",
+    "bretagne": "🥞 Bretagne",
+    "corse": "🏝️ Corse",
+    "lyon": "🍽️ Lyon & Rhône-Alpes",
+    "normandie": "🧈 Normandie",
+    "nord": "🧅 Nord & Hauts-de-France",
     "pays-basque": "🌶️ Pays Basque",
-    "perigord":    "🦆 Périgord & Dordogne",
-    "provence":    "🌿 Provence & Côte d'Azur",
-    "savoie":      "🏔️ Savoie & Alpes",
+    "perigord": "🦆 Périgord & Dordogne",
+    "provence": "🌿 Provence & Côte d'Azur",
+    "savoie": "🏔️ Savoie & Alpes",
     # Cuisines asiatiques
-    "chine":       "🥟 Chine",
-    "coree":       "🥢 Corée du Sud",
-    "indonesie":   "🍜 Indonésie",
-    "japon":       "🍣 Japon",
-    "thai":        "🌶️ Thaïlande",
-    "vietnam":     "🫕 Vietnam",
+    "chine": "🥟 Chine",
+    "coree": "🥢 Corée du Sud",
+    "indonesie": "🍜 Indonésie",
+    "japon": "🍣 Japon",
+    "thai": "🌶️ Thaïlande",
+    "vietnam": "🫕 Vietnam",
     # BBQ
-    "grill":       "🔥 Grill",
-    "roast":       "🍗 Rôtisserie",
-    "smoke":       "💨 Fumage",
+    "grill": "🔥 Grill",
+    "roast": "🍗 Rôtisserie",
+    "smoke": "💨 Fumage",
     # Sauces
-    "marinades":   "🫙 Marinades",
-    "rubs":        "🧂 Rubs & Épices",
+    "marinades": "🫙 Marinades",
+    "rubs": "🧂 Rubs & Épices",
+    # Apéros
+    "dips-tartinades":  "🫙 Dips & Tartinades",
+    "bouchees-snacks":  "🫒 Bouchées & Snacks",
+    "boissons":         "🍹 Boissons & Cocktails",
+    # Entrées
+    "salades":          "🥗 Salades",
+    "soupes":           "🍲 Soupes & Veloutés",
+    "verrines":         "🥂 Verrines",
+    "tartines":         "🍞 Tartines & Toasts",
+    "tartes-quiches":   "🥧 Tartes & Quiches",
+    # Boulangerie
+    "pains":            "🍞 Pains",
+    "pizza-foccacia":   "🍕 Pizzas & Focaccias",
+    "viennoiseries":    "🥐 Viennoiseries",
+    "pates-de-base":    "📋 Pâtes de Base",
+    # Desserts
+    "gateaux":          "🎂 Gâteaux",
+    "tartes":           "🥧 Tartes Sucrées",
+    "glaces-sorbets":   "🍦 Glaces & Sorbets",
+    "mousses-cremes":   "🍮 Mousses & Crèmes",
+    "biscuits-cookies": "🍪 Biscuits & Cookies",
 }
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def get_folder_title(folder_name):
     """Retourne le titre d'un sous-dossier (avec emoji si connu)."""
@@ -87,15 +109,14 @@ def count_recipes(folder):
     total = 0
     for root, dirs, files in os.walk(folder):
         dirs[:] = [d for d in dirs if not d.startswith((".", "__"))]
-        total += sum(
-            1 for f in files if f.endswith(".md") and f.lower() != "readme.md"
-        )
+        total += sum(1 for f in files if f.endswith(".md") and f.lower() != "readme.md")
     return total
 
 
 # ---------------------------------------------------------------------------
 # Génération récursive des README
 # ---------------------------------------------------------------------------
+
 
 def generate_folder_readme(folder, title, depth=0):
     """
@@ -110,7 +131,8 @@ def generate_folder_readme(folder, title, depth=0):
         return
 
     subfolders = [
-        d for d in entries
+        d
+        for d in entries
         if os.path.isdir(os.path.join(folder, d)) and not d.startswith((".", "__"))
     ]
     direct_recipes = [
