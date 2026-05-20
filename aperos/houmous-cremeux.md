@@ -19,3 +19,20 @@
 2. Ajouter le tahini, l'ail pressé, le jus de citron et le cumin.
 3. Verser l'huile d'olive en filet tout en continuant de mixer jusqu'à obtenir une crème lisse.
 4. Servir avec un filet d'huile d'olive et une pincée de paprika sur le dessus.
+
+---
+[⬅ Retour à l'index](../README.md)
+
+<script>
+  const servingInput = document.getElementById('servings');
+  const baseServings = 4;
+
+  servingInput.addEventListener('input', () => {
+    const ratio = servingInput.value / baseServings;
+    document.querySelectorAll('.qty').forEach(span => {
+      const baseValue = parseFloat(span.getAttribute('data-base'));
+      let newValue = Math.round((baseValue * ratio) * 10) / 10;
+      span.textContent = newValue;
+    });
+  });
+</script>

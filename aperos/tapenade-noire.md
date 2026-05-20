@@ -17,3 +17,20 @@
 1. Mixer grossièrement les olives, les câpres, les anchois et l'ail.
 2. Ajouter l'huile d'olive progressivement pour lier l'ensemble (la texture ne doit pas être une purée lisse, on veut garder du relief).
 3. Poivrer (le sel n'est généralement pas nécessaire à cause des anchois et des câpres).
+
+---
+[⬅ Retour à l'index](../README.md)
+
+<script>
+  const servingInput = document.getElementById('servings');
+  const baseServings = 4;
+
+  servingInput.addEventListener('input', () => {
+    const ratio = servingInput.value / baseServings;
+    document.querySelectorAll('.qty').forEach(span => {
+      const baseValue = parseFloat(span.getAttribute('data-base'));
+      let newValue = Math.round((baseValue * ratio) * 10) / 10;
+      span.textContent = newValue;
+    });
+  });
+</script>

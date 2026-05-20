@@ -32,4 +32,4 @@
 * **Variante :** À Toulon, on la mange parfois sucrée, mais la version poivrée reste la référence.
 
 ---
-[⬅ Retour à l'accueil](../)
+[⬅ Retour à l'index](../README.md)

@@ -21,3 +21,20 @@
 
 ## 💡 Notes & Astuces
 - Se conserve plusieurs mois dans un bocal hermétique à l'abri de l'humidité.
+
+---
+[⬅ Retour à l'index](../README.md)
+
+<script>
+  const servingInput = document.getElementById('servings');
+  const baseServings = 1;
+
+  servingInput.addEventListener('input', () => {
+    const ratio = servingInput.value / baseServings;
+    document.querySelectorAll('.qty').forEach(span => {
+      const baseValue = parseFloat(span.getAttribute('data-base'));
+      let newValue = Math.round((baseValue * ratio) * 10) / 10;
+      span.textContent = newValue;
+    });
+  });
+</script>
