@@ -94,6 +94,10 @@ def check_recipes(auto_fix=False):
                                 errors.append(
                                     f"TEMPLATE : '{path}' manque la section '{section}'."
                                 )
+                        if not re.search(r"\[.*Retour.*\]\(.*README\.md\)", content):
+                            errors.append(
+                                f"RETOUR : '{path}' manque le lien de retour vers l'index (ex: [⬅ Retour à l'index](../README.md))."
+                            )
                 except Exception as e:
                     errors.append(f"LECTURE : Impossible de lire '{path}' ({e})")
 
