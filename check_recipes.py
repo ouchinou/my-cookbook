@@ -57,7 +57,7 @@ def apply_fix(original_path, fixed_path):
 
 def check_recipes(auto_fix=False):
     errors = []
-    nom_errors = []   # liste de (original_path, fixed_path)
+    nom_errors = []  # liste de (original_path, fixed_path)
     link_errors = []  # liste de chemins manquant le lien de retour
 
     required_sections = ["## 🛒 Ingrédients", "## 🥣 Instructions", "| Préparation |"]
@@ -133,7 +133,9 @@ def check_recipes(auto_fix=False):
                 f"\n\ud83d\udca1 {len(link_errors)} fichier(s) sans lien de retour peuvent \u00eatre corrig\u00e9s automatiquement :"
             )
             for p in link_errors:
-                print(f"     {p}  \u2192  ajout de [\u2b05 Retour \u00e0 l'index](../README.md)")
+                print(
+                    f"     {p}  \u2192  ajout de [\u2b05 Retour \u00e0 l'index](../README.md)"
+                )
 
             if auto_fix:
                 _do_fix_links(link_errors)
