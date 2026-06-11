@@ -5,6 +5,7 @@
 | [🥨 Alsace](alsace/) | 0 |
 | [🍷 Bourgogne](bourgogne/) | 0 |
 | [🥞 Bretagne](bretagne/) | 1 |
+| [Classique](classique/) | 1 |
 | [🏝️ Corse](corse/) | 0 |
 | [🍽️ Lyon & Rhône-Alpes](lyon/) | 0 |
 | [🧅 Nord & Hauts-de-France](nord/) | 2 |

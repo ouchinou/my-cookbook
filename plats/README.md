@@ -4,7 +4,7 @@
 | :--- | :---: |
 | [🌏 Cuisine Asiatique](asiatique/) | 6 |
 | [� Outre-Mer](autres/) | 2 |
-| [🇫🇷 Cuisine Française Métropolitaine](france/) | 6 |
+| [🇫🇷 Cuisine Française Métropolitaine](france/) | 7 |
 | [🍛 Inde](inde/) | 0 |
 | [🌮 Mexique](mexique/) | 1 |
 | [🌯 Tex-Mex](tex-mex/) | 3 |
