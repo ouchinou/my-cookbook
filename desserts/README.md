@@ -8,5 +8,9 @@
 | [🍮 Mousses & Crèmes](mousses-cremes/) | 0 |
 | [🥧 Tartes Sucrées](tartes/) | 0 |
 
+## Recettes générales
+
+- [Tarte aux pommes](tarte-aux-pommes.md)
+
 ---
 [⬅ Retour à l'accueil](../)

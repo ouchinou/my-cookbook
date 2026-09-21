@@ -9,3 +9,4 @@ Bienvenue dans mon livre de cuisine !
 | [🥖 Pâtes & Boulangerie](boulangerie_pates/) | 6 |
 | [🍯 Sauces, Marinades & Rubs](sauces/) | 9 |
 | [🔥 BBQ](bbq/) | 4 |
+| [🍰 Desserts](desserts/) | 1 |
